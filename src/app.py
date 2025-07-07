@@ -17,7 +17,9 @@ import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from data_generator import BankingDataGenerator
-from analytics_engine import BankingAnalyti    # Page configuration
+from analytics_engine import BankingAnalytics
+
+# Page configuration
 st.set_page_config(
     page_title="Banking Analytics Dashboard - GCP/Looker",
     page_icon="🏦",
