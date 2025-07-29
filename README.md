@@ -443,3 +443,18 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 - Comunidade Streamlit pelo excelente framework de dashboard
 - Contribuidores open source que tornaram este projeto possível
 
+
+
+## 📋 Descrição
+
+Descreva aqui o conteúdo desta seção.
+
+
+## 📦 Instalação
+
+Descreva aqui o conteúdo desta seção.
+
+
+## 💻 Uso
+
+Descreva aqui o conteúdo desta seção.
