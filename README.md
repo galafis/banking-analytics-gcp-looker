@@ -1,3 +1,7 @@
+_**README.md** last updated: Oct 01, 2025_
+
+---
+
 # 🏦 Banking Analytics Dashboard - GCP/Looker Integration
 
 *[Português](#português) | [English](#english)*
@@ -50,7 +54,7 @@ This project showcases real-world applications of data science in the banking se
 | **Backend** | Python, FastAPI | Data processing and API services |
 | **Database** | Google BigQuery | Data warehousing and analytics |
 | **BI Tool** | Looker Studio | Business intelligence and reporting |
-| **ML/AI** | TensorFlow, scikit-learn | Fraud detection and predictive analytics |
+| **ML** | TensorFlow, scikit-learn | Fraud detection and predictive analytics |
 | **Infrastructure** | Terraform, Docker | Infrastructure as Code and containerization |
 | **Data Processing** | Apache Beam, Pandas | ETL and data transformation |
 | **Cloud Platform** | Google Cloud Platform | Hosting and managed services |
@@ -73,24 +77,8 @@ This project showcases real-world applications of data science in the banking se
 
 ### 🏗️ Architecture
 
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Data Sources  │    │   GCP BigQuery  │    │  Looker Studio  │
-│                 │───▶│                 │───▶│                 │
-│ • Transactions  │    │ • Data Warehouse│    │ • Dashboards    │
-│ • Customers     │    │ • Analytics     │    │ • Reports       │
-│ • Products      │    │ • ML Models     │    │ • Visualizations│
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-         │                       │                       │
-         ▼                       ▼                       ▼
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│  Streamlit App  │    │  Apache Beam    │    │   Terraform     │
-│                 │    │                 │    │                 │
-│ • Interactive   │    │ • ETL Pipeline  │    │ • Infrastructure│
-│ • Real-time     │    │ • Data Quality  │    │ • Automation    │
-│ • Responsive    │    │ • Transformations│   │ • Deployment    │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-```
+![Architecture Diagram](docs/diagram.png)
+
 
 ### 🚦 Getting Started
 
@@ -105,7 +93,7 @@ This project showcases real-world applications of data science in the banking se
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/banking-analytics-gcp-looker.git
+git clone https://github.com/galafis/banking-analytics-gcp-looker.git
 cd banking-analytics-gcp-looker
 ```
 
@@ -293,7 +281,7 @@ Este projeto apresenta aplicações do mundo real de ciência de dados no setor 
 | **Backend** | Python, FastAPI | Processamento de dados e serviços de API |
 | **Banco de Dados** | Google BigQuery | Data warehousing e analytics |
 | **Ferramenta BI** | Looker Studio | Business intelligence e relatórios |
-| **ML/AI** | TensorFlow, scikit-learn | Detecção de fraudes e analytics preditivos |
+| **ML** | TensorFlow, scikit-learn | Detecção de fraudes e analytics preditivos |
 | **Infraestrutura** | Terraform, Docker | Infrastructure as Code e containerização |
 | **Processamento** | Apache Beam, Pandas | ETL e transformação de dados |
 | **Plataforma Cloud** | Google Cloud Platform | Hospedagem e serviços gerenciados |
@@ -327,7 +315,7 @@ Este projeto apresenta aplicações do mundo real de ciência de dados no setor 
 
 1. **Clone o repositório**
 ```bash
-git clone https://github.com/yourusername/banking-analytics-gcp-looker.git
+git clone https://github.com/galafis/banking-analytics-gcp-looker.git
 cd banking-analytics-gcp-looker
 ```
 
@@ -444,17 +432,7 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 - Contribuidores open source que tornaram este projeto possível
 
 
+### 🏗️ Arquitetura
 
-## 📋 Descrição
+![Diagrama de Arquitetura](docs/diagram.png)
 
-Descreva aqui o conteúdo desta seção.
-
-
-## 📦 Instalação
-
-Descreva aqui o conteúdo desta seção.
-
-
-## 💻 Uso
-
-Descreva aqui o conteúdo desta seção.
