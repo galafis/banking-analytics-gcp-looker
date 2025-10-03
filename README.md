@@ -1,4 +1,4 @@
-_**README.md** last updated: Oct 01, 2025_
+_**README.md** last updated: Oct 03, 2025_
 
 ---
 
@@ -9,6 +9,10 @@ _**README.md** last updated: Oct 01, 2025_
 ---
 
 ## English
+
+### 🖼️ Hero Image
+
+![Architecture Diagram](docs/diagram.png)
 
 ### 📊 Overview
 
@@ -78,7 +82,6 @@ This project showcases real-world applications of data science in the banking se
 ### 🏗️ Architecture
 
 ![Architecture Diagram](docs/diagram.png)
-
 
 ### 🚦 Getting Started
 
@@ -237,6 +240,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Português
 
+### 🖼️ Imagem Hero
+
+![Diagrama de Arquitetura](docs/diagram.png)
+
 ### 📊 Visão Geral
 
 O Dashboard de Analytics Bancário é uma plataforma abrangente de análise de dados projetada para instituições financeiras obterem insights profundos sobre comportamento do cliente, padrões de transações, detecção de fraudes e performance de negócios. Construído com tecnologias modernas de nuvem incluindo Google Cloud Platform (GCP) BigQuery e Looker Studio, esta solução demonstra capacidades avançadas de engenharia de dados e analytics.
@@ -301,6 +308,10 @@ Este projeto apresenta aplicações do mundo real de ciência de dados no setor 
 - Escalar capacidades de analytics pela organização
 - Implementar melhores práticas para governança de dados
 - Habilitar analytics self-service para usuários de negócio
+
+### 🏗️ Arquitetura
+
+![Diagrama de Arquitetura](docs/diagram.png)
 
 ### 🚦 Começando
 
@@ -430,9 +441,4 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 - Google Cloud Platform por fornecer infraestrutura robusta de analytics
 - Comunidade Streamlit pelo excelente framework de dashboard
 - Contribuidores open source que tornaram este projeto possível
-
-
-### 🏗️ Arquitetura
-
-![Diagrama de Arquitetura](docs/diagram.png)
 
