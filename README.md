@@ -1,497 +1,151 @@
-# 📊 Banking Analytics Gcp Looker
+# Banking Analytics Platform (GCP + Looker)
 
-> Banking Analytics Dashboard using GCP BigQuery and Looker Studio - Advanced financial data analytics platform
+[![Python](https://img.shields.io/badge/Python-3.12+-3776AB.svg)](https://www.python.org/)
+[![Pandas](https://img.shields.io/badge/Pandas-2.2-150458.svg)](https://pandas.pydata.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.31-FF4B4B.svg)](https://streamlit.io/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-[![Python](https://img.shields.io/badge/Python-3.12-3776AB.svg)](https://img.shields.io/badge/)
-[![dbt](https://img.shields.io/badge/dbt-1.7-FF694B.svg)](https://img.shields.io/badge/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg)](https://img.shields.io/badge/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688.svg)](https://img.shields.io/badge/)
-[![NumPy](https://img.shields.io/badge/NumPy-1.26-013243.svg)](https://img.shields.io/badge/)
-[![Pandas](https://img.shields.io/badge/Pandas-2.2-150458.svg)](https://img.shields.io/badge/)
-[![Plotly](https://img.shields.io/badge/Plotly-5.18-3F4F75.svg)](https://img.shields.io/badge/)
-[![scikit--learn](https://img.shields.io/badge/scikit--learn-1.4-F7931E.svg)](https://img.shields.io/badge/)
-[![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.0-D71F00.svg)](https://img.shields.io/badge/)
-[![Streamlit](https://img.shields.io/badge/Streamlit-1.31-FF4B4B.svg)](https://img.shields.io/badge/)
-[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.15-FF6F00.svg)](https://img.shields.io/badge/)
-[![XGBoost](https://img.shields.io/badge/XGBoost-2.0-FF6600.svg)](https://img.shields.io/badge/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+Plataforma de analytics bancario com segmentacao RFM, scoring de risco de credito, deteccao de fraudes, analise de canais e dashboard interativo (Streamlit). Gerador de dados sinteticos para simulacao realista de cenarios bancarios brasileiros.
 
-[English](#english) | [Português](#português)
+Banking analytics platform with RFM segmentation, credit risk scoring, fraud detection, channel analysis, and interactive dashboard (Streamlit). Synthetic data generator for realistic simulation of Brazilian banking scenarios.
 
 ---
 
-## English
-
-### 🎯 Overview
-
-**Banking Analytics Gcp Looker** is a production-grade Python application complemented by CSS, HTML, SQL that showcases modern software engineering practices including clean architecture, comprehensive testing, containerized deployment, and CI/CD readiness.
-
-The codebase comprises **1,352 lines** of source code organized across **12 modules**, following industry best practices for maintainability, scalability, and code quality.
-
-### ✨ Key Features
-
-- **📊 Interactive Visualizations**: Dynamic charts with real-time data updates
-- **🎨 Responsive Design**: Adaptive layout for desktop and mobile devices
-- **📈 Data Aggregation**: Multi-dimensional data analysis and filtering
-- **📥 Export Capabilities**: PDF, CSV, and image export for reports
-- **⚡ Async API**: High-performance async REST API with FastAPI
-- **📖 Auto-Documentation**: Interactive Swagger UI and ReDoc
-- **✅ Validation**: Pydantic-powered request/response validation
-- **🐳 Containerized**: Docker support for consistent deployment
-
-### 🏗️ Architecture
+## Arquitetura / Architecture
 
 ```mermaid
 graph TB
-    subgraph Client["🖥️ Client Layer"]
-        A[REST API Client]
-        B[Swagger UI]
+    subgraph Generator["Gerador de Dados"]
+        G1[BankingDataGenerator]
+        G2[Customers]
+        G3[Transactions]
+        G4[Products]
     end
-    
-    subgraph API["⚡ API Layer"]
-        C[Authentication & Rate Limiting]
-        D[Request Validation]
-        E[API Endpoints]
+
+    subgraph Engine["Motor de Analytics"]
+        E1[BankingAnalytics]
+        E2[Transaction Volume]
+        E3[Fraud Detection]
+        E4[RFM Segmentation]
+        E5[Credit Risk Scoring]
+        E6[Channel Analysis]
+        E7[Product Performance]
     end
-    
-    subgraph ML["🤖 ML Engine"]
-        F[Feature Engineering]
-        G[Model Training]
-        H[Prediction Service]
-        I[Model Registry]
+
+    subgraph Dashboard["Dashboard"]
+        D1[Streamlit App]
+        D2[KPI Cards]
+        D3[Charts / Plotly]
+        D4[Filters / Sidebar]
     end
-    
-    subgraph Data["💾 Data Layer"]
-        J[(Database)]
-        K[Cache Layer]
-        L[Data Pipeline]
-    end
-    
-    A --> C
-    B --> C
-    C --> D --> E
-    E --> H
-    E --> J
-    H --> F --> G
-    G --> I
-    I --> H
-    E --> K
-    L --> J
-    
-    style Client fill:#e1f5fe
-    style API fill:#f3e5f5
-    style ML fill:#e8f5e9
-    style Data fill:#fff3e0
+
+    G1 --> G2
+    G1 --> G3
+    G1 --> G4
+    G2 --> E1
+    G3 --> E1
+    G4 --> E1
+    E1 --> E2
+    E1 --> E3
+    E1 --> E4
+    E1 --> E5
+    E1 --> E6
+    E1 --> E7
+    E1 --> D1
+    D1 --> D2
+    D1 --> D3
+    D1 --> D4
 ```
+
+## Fluxo de Analise / Analysis Flow
 
 ```mermaid
-classDiagram
-    class BankingAnalytics
-    class BankingDataGenerator
+sequenceDiagram
+    participant Gen as DataGenerator
+    participant Eng as BankingAnalytics
+    participant Dash as Streamlit
+
+    Gen->>Gen: generate_customers(N)
+    Gen->>Gen: generate_transactions()
+    Gen->>Gen: generate_products()
+    Gen-->>Eng: customers, transactions, products
+    Eng->>Eng: get_fraud_statistics()
+    Eng->>Eng: rfm_segmentation()
+    Eng->>Eng: credit_risk_score()
+    Eng->>Eng: get_channel_analysis()
+    Eng->>Eng: generate_insights()
+    Eng-->>Dash: DataFrames + Dicts
+    Dash->>Dash: Render KPIs + Charts
 ```
 
-### 🚀 Quick Start
+## Funcionalidades / Features
 
-#### Prerequisites
+| Funcionalidade / Feature | Descricao / Description |
+|---|---|
+| Data Generator | Gerador de dados sinteticos bancarios / Synthetic banking data generator |
+| RFM Segmentation | Recency-Frequency-Monetary com 4 segmentos / RFM with 4 segments |
+| Credit Risk Score | Scoring de risco baseado em transacoes e credito / Risk scoring based on transactions and credit |
+| Fraud Detection | Estatisticas e tendencias de fraude / Fraud statistics and trends |
+| Channel Analysis | Analise por canal (Mobile, ATM, Branch, Internet) / Channel breakdown |
+| Product Performance | Desempenho por tipo de produto / Performance by product type |
+| Customer Segments | Analise por segmento (Premium, Gold, Silver, Bronze) / Segment analysis |
+| Interactive Dashboard | Dashboard Streamlit com filtros e graficos Plotly / Streamlit dashboard with Plotly charts |
 
-- Python 3.12+
-- pip (Python package manager)
-- Docker and Docker Compose (optional)
-
-#### Installation
+## Inicio Rapido / Quick Start
 
 ```bash
-# Clone the repository
+# Clonar / Clone
 git clone https://github.com/galafis/banking-analytics-gcp-looker.git
 cd banking-analytics-gcp-looker
 
-# Create and activate virtual environment
+# Ambiente virtual / Virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # Windows: venv\Scripts\activate
 
-# Install dependencies
+# Dependencias / Dependencies
 pip install -r requirements.txt
+
+# Executar dashboard / Run dashboard
+streamlit run frontend/app.py
 ```
 
-#### Running
+## Testes / Tests
 
 ```bash
-# Run the application
-python frontend/app.py
+pytest tests/ -v
 ```
 
-### 🐳 Docker
-
-```bash
-# Build the Docker image
-docker build -t banking-analytics-gcp-looker .
-
-# Run the container
-docker run -d -p 8000:8000 --name banking-analytics-gcp-looker banking-analytics-gcp-looker
-
-# View logs
-docker logs -f banking-analytics-gcp-looker
-
-# Stop and remove
-docker stop banking-analytics-gcp-looker && docker rm banking-analytics-gcp-looker
-```
-
-### 🧪 Testing
-
-```bash
-# Run all tests
-pytest
-
-# Run with coverage report
-pytest --cov --cov-report=html
-
-# Run specific test module
-pytest tests/test_main.py -v
-
-# Run with detailed output
-pytest -v --tb=short
-```
-
-### 📁 Project Structure
+## Estrutura / Structure
 
 ```
 banking-analytics-gcp-looker/
 ├── backend/
-│   └── services/      # Business logic
-│       ├── analytics_engine.py
-│       └── data_generator.py
-├── config/        # Configuration
-│   ├── database.py
-│   ├── gcp.py
-│   └── settings.py
-├── data/
-│   └── schemas/       # Validation schemas
-│       └── sql/
-├── docs/          # Documentation
+│   └── services/
+│       ├── analytics_engine.py    # Motor de analytics / Analytics engine
+│       └── data_generator.py      # Gerador de dados / Data generator
 ├── frontend/
-│   └── app.py
-├── tests/         # Test suite
-│   ├── integration/
-│   │   └── __init__.py
+│   └── app.py                     # Dashboard Streamlit
+├── tests/
 │   └── unit/
-│       └── __init__.py
-├── CODE_OF_CONDUCT.md
-├── CONTRIBUTING.md
-├── Dockerfile
-├── LICENSE
-├── README.md
+│       └── test_analytics.py      # Testes unitarios / Unit tests
+├── config/
+├── data/
 ├── requirements.txt
-└── setup.py
+└── README.md
 ```
 
-### 📊 Performance Metrics
-
-The engine calculates comprehensive performance metrics:
-
-| Metric | Description | Formula |
-|--------|-------------|---------|
-| **Sharpe Ratio** | Risk-adjusted return | (Rp - Rf) / σp |
-| **Sortino Ratio** | Downside risk-adjusted return | (Rp - Rf) / σd |
-| **Max Drawdown** | Maximum peak-to-trough decline | max(1 - Pt/Pmax) |
-| **Win Rate** | Percentage of profitable trades | Wins / Total |
-| **Profit Factor** | Gross profit / Gross loss | ΣProfit / ΣLoss |
-| **Calmar Ratio** | Return / Max Drawdown | CAGR / MDD |
-| **VaR (95%)** | Value at Risk | 5th percentile of returns |
-| **Expected Shortfall** | Conditional VaR | E[R | R < VaR] |
-
-### 🛠️ Tech Stack
-
-| Technology | Description | Role |
-|------------|-------------|------|
-| **Python** | Core Language | Primary |
-| **dbt** | Data transformation tool | Framework |
-| **Docker** | Containerization platform | Framework |
-| **FastAPI** | High-performance async web framework | Framework |
-| **NumPy** | Numerical computing | Framework |
-| **Pandas** | Data manipulation library | Framework |
-| **Plotly** | Interactive visualization | Framework |
-| **scikit-learn** | Machine learning library | Framework |
-| **SQLAlchemy** | SQL toolkit and ORM | Framework |
-| **Streamlit** | Data app framework | Framework |
-| **TensorFlow** | Deep learning framework | Framework |
-| **XGBoost** | Gradient boosting framework | Framework |
-| HTML | 1 files | Supporting |
-| CSS | 1 files | Supporting |
-| SQL | 1 files | Supporting |
-
-### 🚀 Deployment
-
-#### Cloud Deployment Options
-
-The application is containerized and ready for deployment on:
-
-| Platform | Service | Notes |
-|----------|---------|-------|
-| **AWS** | ECS, EKS, EC2 | Full container support |
-| **Google Cloud** | Cloud Run, GKE | Serverless option available |
-| **Azure** | Container Instances, AKS | Enterprise integration |
-| **DigitalOcean** | App Platform, Droplets | Cost-effective option |
-
-```bash
-# Production build
-docker build -t banking-analytics-gcp-looker:latest .
-
-# Tag for registry
-docker tag banking-analytics-gcp-looker:latest registry.example.com/banking-analytics-gcp-looker:latest
-
-# Push to registry
-docker push registry.example.com/banking-analytics-gcp-looker:latest
-```
-
-### 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-### 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-### 👤 Author
-
-**Gabriel Demetrios Lafis**
-- GitHub: [@galafis](https://github.com/galafis)
-- LinkedIn: [Gabriel Demetrios Lafis](https://linkedin.com/in/gabriel-demetrios-lafis)
-
----
-
-## Português
-
-### 🎯 Visão Geral
-
-**Banking Analytics Gcp Looker** é uma aplicação Python de nível profissional, complementada por CSS, HTML, SQL que demonstra práticas modernas de engenharia de software, incluindo arquitetura limpa, testes abrangentes, implantação containerizada e prontidão para CI/CD.
-
-A base de código compreende **1,352 linhas** de código-fonte organizadas em **12 módulos**, seguindo as melhores práticas do setor para manutenibilidade, escalabilidade e qualidade de código.
-
-### ✨ Funcionalidades Principais
-
-- **📊 Interactive Visualizations**: Dynamic charts with real-time data updates
-- **🎨 Responsive Design**: Adaptive layout for desktop and mobile devices
-- **📈 Data Aggregation**: Multi-dimensional data analysis and filtering
-- **📥 Export Capabilities**: PDF, CSV, and image export for reports
-- **⚡ Async API**: High-performance async REST API with FastAPI
-- **📖 Auto-Documentation**: Interactive Swagger UI and ReDoc
-- **✅ Validation**: Pydantic-powered request/response validation
-- **🐳 Containerized**: Docker support for consistent deployment
-
-### 🏗️ Arquitetura
-
-```mermaid
-graph TB
-    subgraph Client["🖥️ Client Layer"]
-        A[REST API Client]
-        B[Swagger UI]
-    end
-    
-    subgraph API["⚡ API Layer"]
-        C[Authentication & Rate Limiting]
-        D[Request Validation]
-        E[API Endpoints]
-    end
-    
-    subgraph ML["🤖 ML Engine"]
-        F[Feature Engineering]
-        G[Model Training]
-        H[Prediction Service]
-        I[Model Registry]
-    end
-    
-    subgraph Data["💾 Data Layer"]
-        J[(Database)]
-        K[Cache Layer]
-        L[Data Pipeline]
-    end
-    
-    A --> C
-    B --> C
-    C --> D --> E
-    E --> H
-    E --> J
-    H --> F --> G
-    G --> I
-    I --> H
-    E --> K
-    L --> J
-    
-    style Client fill:#e1f5fe
-    style API fill:#f3e5f5
-    style ML fill:#e8f5e9
-    style Data fill:#fff3e0
-```
-
-### 🚀 Início Rápido
-
-#### Prerequisites
+## Tecnologias / Technologies
 
 - Python 3.12+
-- pip (Python package manager)
-- Docker and Docker Compose (optional)
+- pandas, numpy
+- Streamlit, Plotly
+- pytest
 
-#### Installation
+## Licenca / License
 
-```bash
-# Clone the repository
-git clone https://github.com/galafis/banking-analytics-gcp-looker.git
-cd banking-analytics-gcp-looker
+MIT License - veja [LICENSE](LICENSE) / see [LICENSE](LICENSE).
 
-# Create and activate virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-#### Running
-
-```bash
-# Run the application
-python frontend/app.py
-```
-
-### 🐳 Docker
-
-```bash
-# Build the Docker image
-docker build -t banking-analytics-gcp-looker .
-
-# Run the container
-docker run -d -p 8000:8000 --name banking-analytics-gcp-looker banking-analytics-gcp-looker
-
-# View logs
-docker logs -f banking-analytics-gcp-looker
-
-# Stop and remove
-docker stop banking-analytics-gcp-looker && docker rm banking-analytics-gcp-looker
-```
-
-### 🧪 Testing
-
-```bash
-# Run all tests
-pytest
-
-# Run with coverage report
-pytest --cov --cov-report=html
-
-# Run specific test module
-pytest tests/test_main.py -v
-
-# Run with detailed output
-pytest -v --tb=short
-```
-
-### 📁 Estrutura do Projeto
-
-```
-banking-analytics-gcp-looker/
-├── backend/
-│   └── services/      # Business logic
-│       ├── analytics_engine.py
-│       └── data_generator.py
-├── config/        # Configuration
-│   ├── database.py
-│   ├── gcp.py
-│   └── settings.py
-├── data/
-│   └── schemas/       # Validation schemas
-│       └── sql/
-├── docs/          # Documentation
-├── frontend/
-│   └── app.py
-├── tests/         # Test suite
-│   ├── integration/
-│   │   └── __init__.py
-│   └── unit/
-│       └── __init__.py
-├── CODE_OF_CONDUCT.md
-├── CONTRIBUTING.md
-├── Dockerfile
-├── LICENSE
-├── README.md
-├── requirements.txt
-└── setup.py
-```
-
-### 📊 Performance Metrics
-
-The engine calculates comprehensive performance metrics:
-
-| Metric | Description | Formula |
-|--------|-------------|---------|
-| **Sharpe Ratio** | Risk-adjusted return | (Rp - Rf) / σp |
-| **Sortino Ratio** | Downside risk-adjusted return | (Rp - Rf) / σd |
-| **Max Drawdown** | Maximum peak-to-trough decline | max(1 - Pt/Pmax) |
-| **Win Rate** | Percentage of profitable trades | Wins / Total |
-| **Profit Factor** | Gross profit / Gross loss | ΣProfit / ΣLoss |
-| **Calmar Ratio** | Return / Max Drawdown | CAGR / MDD |
-| **VaR (95%)** | Value at Risk | 5th percentile of returns |
-| **Expected Shortfall** | Conditional VaR | E[R | R < VaR] |
-
-### 🛠️ Stack Tecnológica
-
-| Tecnologia | Descrição | Papel |
-|------------|-----------|-------|
-| **Python** | Core Language | Primary |
-| **dbt** | Data transformation tool | Framework |
-| **Docker** | Containerization platform | Framework |
-| **FastAPI** | High-performance async web framework | Framework |
-| **NumPy** | Numerical computing | Framework |
-| **Pandas** | Data manipulation library | Framework |
-| **Plotly** | Interactive visualization | Framework |
-| **scikit-learn** | Machine learning library | Framework |
-| **SQLAlchemy** | SQL toolkit and ORM | Framework |
-| **Streamlit** | Data app framework | Framework |
-| **TensorFlow** | Deep learning framework | Framework |
-| **XGBoost** | Gradient boosting framework | Framework |
-| HTML | 1 files | Supporting |
-| CSS | 1 files | Supporting |
-| SQL | 1 files | Supporting |
-
-### 🚀 Deployment
-
-#### Cloud Deployment Options
-
-The application is containerized and ready for deployment on:
-
-| Platform | Service | Notes |
-|----------|---------|-------|
-| **AWS** | ECS, EKS, EC2 | Full container support |
-| **Google Cloud** | Cloud Run, GKE | Serverless option available |
-| **Azure** | Container Instances, AKS | Enterprise integration |
-| **DigitalOcean** | App Platform, Droplets | Cost-effective option |
-
-```bash
-# Production build
-docker build -t banking-analytics-gcp-looker:latest .
-
-# Tag for registry
-docker tag banking-analytics-gcp-looker:latest registry.example.com/banking-analytics-gcp-looker:latest
-
-# Push to registry
-docker push registry.example.com/banking-analytics-gcp-looker:latest
-```
-
-### 🤝 Contribuindo
-
-Contribuições são bem-vindas! Sinta-se à vontade para enviar um Pull Request.
-
-### 📄 Licença
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
-
-### 👤 Autor
+## Autor / Author
 
 **Gabriel Demetrios Lafis**
 - GitHub: [@galafis](https://github.com/galafis)
-- LinkedIn: [Gabriel Demetrios Lafis](https://linkedin.com/in/gabriel-demetrios-lafis)
