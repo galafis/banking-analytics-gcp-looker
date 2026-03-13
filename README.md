@@ -4,6 +4,7 @@
 [![Pandas](https://img.shields.io/badge/Pandas-2.2-150458.svg)](https://pandas.pydata.org/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.31-FF4B4B.svg)](https://streamlit.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg?logo=docker)](Dockerfile)
 
 Plataforma de analytics bancario com segmentacao RFM, scoring de risco de credito, deteccao de fraudes, analise de canais e dashboard interativo (Streamlit). Gerador de dados sinteticos para simulacao realista de cenarios bancarios brasileiros.
 
